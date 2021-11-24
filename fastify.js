@@ -9,20 +9,21 @@ const resource = 'persons';
 // Get
 fastify.get(`/${resource}/:id`, async (request, reply) => {
     const person = await service.find(request.params.id);
-    person ? reply.send(person) : reply.code(404).send();
+    if(person){ 
+        return person;
+    } 
+    reply.code(404).send();
 });
 
 // List
-fastify.get(`/${resource}`, async (request, reply) => {
-    const persons = await service.list();
-    reply.send(persons);
+fastify.get(`/${resource}`, () => {
+    return service.list();
 });
 
 // Create
 fastify.post(`/${resource}`, async (request, reply) => {
     const person = await service.add(request.body);
-    reply.code(201);
-    reply.send(person);
+    reply.code(201).send(person);
 });
 
 //Update
@@ -32,8 +33,7 @@ fastify.patch(`/${resource}/:id`, async (request, reply) => {
         reply.code(404).send();
         return;
     }
-    const updated = await service.update({ id: request.params.id, ...request.body });
-    reply.send(updated);
+   return service.update({ id: request.params.id, ...request.body });
 });
 
 
