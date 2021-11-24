@@ -24,7 +24,10 @@ async function list(ctx) {
 
 async function post(ctx) {
   const p = await person.add(ctx.request.body);
-  if (p) ctx.body = p;
+  if (p) {
+    ctx.body = p;
+    ctx.status = 201;
+  }
 }
 
 async function patch(ctx) {

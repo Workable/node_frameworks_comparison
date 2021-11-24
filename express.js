@@ -16,7 +16,7 @@ app.get('/persons', async function (req, res) {
 
 app.post('/persons', async function (req, res) {
   const p = await person.add(req.body);
-  if (p) res.send(p);
+  if (p) res.status(201).send(p);
   else res.status(404).send();
 });
 
