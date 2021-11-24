@@ -4,18 +4,21 @@ const persons = [];
 module.exports = {
   async find(id) {
     await setTimeout(100);
-    persons.find(p => p.id === id);
+    return persons.find(p => p.id == id);
   },
 
   async add(person) {
     await setTimeout(100);
     persons.push(person);
+    return person;
   },
 
   async update(person) {
     await setTimeout(100);
-    const saved = persons.find(p => p.id === person.id);
+    const saved = persons.find(p => p.id == person.id);
+    if (!saved) return;
     Object.assign(saved, person);
+    return saved;
   },
 
   async list() {
