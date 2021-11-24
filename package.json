@@ -1,0 +1,11 @@
+{
+  "name": "node_frameworks",
+  "version": "1.0.0",
+  "description": "Test koa vs express vs fastify",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
