@@ -27,7 +27,7 @@ app.get('/persons/:id', async function (req, res) {
 });
 
 app.patch('/persons/:id', async function (req, res) {
-    const p = await person.update({ id: req.params.id, ...req.body });
-    if (p) res.send(p);
-    else res.status(404).send();
-  });
+  const p = await person.update({ id: req.params.id, ...req.body });
+  if (p) res.send(p);
+  else res.status(404).send();
+});
