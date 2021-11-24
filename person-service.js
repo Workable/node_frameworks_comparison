@@ -1,5 +1,5 @@
 const { setTimeout } = require('timers/promises');
-const persons = [];
+const persons = [{name: "Chuck Norris", email: "chuck@noris.com", id:1}];
 
 module.exports = {
   async find(id) {
