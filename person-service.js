@@ -8,6 +8,7 @@ module.exports = {
   },
 
   async add(person) {
+    if (!person.id) person.id = Math.ceil(Math.random() * 1000000);
     await setTimeout(100);
     persons.push(person);
     return person;
