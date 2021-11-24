@@ -4,8 +4,14 @@
   "description": "Test koa vs express vs fastify",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fastify": "^3.24.0",
+    "koa": "^2.13.4"
+  }
 }
