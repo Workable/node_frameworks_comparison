@@ -12,10 +12,9 @@ app.use(bodyParser());
 app.use(
   router({
     '/persons': { get: list, post },
-    '/persons/:id': { put, get }
+    '/persons/:id': { patch, get }
   })
 );
-
 
 // Routes implementation
 
@@ -24,13 +23,16 @@ async function list(ctx) {
 }
 
 async function post(ctx) {
-  ctx.body = await person.add(ctx.request.body);
+  const p = await person.add(ctx.request.body);
+  if (p) ctx.body = p;
 }
 
-async function put(ctx) {
-  ctx.body = await person.update({ id: ctx.params.id, ...ctx.request.body });
+async function patch(ctx) {
+  const update = await person.update({ id: ctx.params.id, ...ctx.request.body });
+  if (update) ctx.body = update;
 }
 
 async function get(ctx) {
-  ctx.body = await person.find(ctx.params.id);
+  const p = await person.find(ctx.params.id);
+  if (p) ctx.body = p;
 }
