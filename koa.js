@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
 const { router } = require('fast-koa-router');
-const person = require('./person-service');
+const service = require('./person-service');
 var bodyParser = require('koa-bodyparser');
 
 app.listen(3000, function () {
@@ -19,11 +19,11 @@ app.use(
 // Routes implementation
 
 async function list(ctx) {
-  ctx.body = await person.list();
+  ctx.body = await service.list();
 }
 
 async function post(ctx) {
-  const p = await person.add(ctx.request.body);
+  const p = await service.add(ctx.request.body);
   if (p) {
     ctx.body = p;
     ctx.status = 201;
@@ -31,11 +31,11 @@ async function post(ctx) {
 }
 
 async function patch(ctx) {
-  const update = await person.update({ id: ctx.params.id, ...ctx.request.body });
+  const update = await service.update({ id: ctx.params.id, ...ctx.request.body });
   if (update) ctx.body = update;
 }
 
 async function get(ctx) {
-  const p = await person.find(ctx.params.id);
+  const p = await service.find(ctx.params.id);
   if (p) ctx.body = p;
 }

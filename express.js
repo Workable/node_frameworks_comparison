@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const person = require('./person-service');
+const service = require('./person-service');
 var bodyParser = require('body-parser');
 
 app.listen(3002, function () {
@@ -11,23 +11,23 @@ app.use(bodyParser.json());
 // Implementation
 
 app.get('/persons', async function (req, res) {
-  res.send(await person.list());
+  res.send(await service.list());
 });
 
 app.post('/persons', async function (req, res) {
-  const p = await person.add(req.body);
+  const p = await service.add(req.body);
   if (p) res.status(201).send(p);
   else res.status(404).send();
 });
 
 app.get('/persons/:id', async function (req, res) {
-  const p = await person.find(req.params.id);
+  const p = await service.find(req.params.id);
   if (p) res.send(p);
   else res.status(404).send();
 });
 
 app.patch('/persons/:id', async function (req, res) {
-  const p = await person.update({ id: req.params.id, ...req.body });
+  const p = await service.update({ id: req.params.id, ...req.body });
   if (p) res.send(p);
   else res.status(404).send();
 });
