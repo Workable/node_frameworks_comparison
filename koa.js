@@ -23,19 +23,19 @@ async function list(ctx) {
 }
 
 async function post(ctx) {
-  const p = await service.add(ctx.request.body);
-  if (p) {
-    ctx.body = p;
+  const person = await service.add(ctx.request.body);
+  if (person) {
+    ctx.body = person;
     ctx.status = 201;
   }
 }
 
 async function patch(ctx) {
-  const update = await service.update({ id: ctx.params.id, ...ctx.request.body });
-  if (update) ctx.body = update;
+  const person = await service.update({ id: ctx.params.id, ...ctx.request.body });
+  if (person) ctx.body = person;
 }
 
 async function get(ctx) {
-  const p = await service.find(ctx.params.id);
-  if (p) ctx.body = p;
+  const person = await service.find(ctx.params.id);
+  if (person) ctx.body = person;
 }

@@ -15,19 +15,19 @@ app.get('/persons', async function (req, res) {
 });
 
 app.post('/persons', async function (req, res) {
-  const p = await service.add(req.body);
-  if (p) res.status(201).send(p);
+  const person = await service.add(req.body);
+  if (person) res.status(201).send(person);
   else res.status(404).send();
 });
 
 app.get('/persons/:id', async function (req, res) {
-  const p = await service.find(req.params.id);
-  if (p) res.send(p);
+  const person = await service.find(req.params.id);
+  if (person) res.send(person);
   else res.status(404).send();
 });
 
 app.patch('/persons/:id', async function (req, res) {
-  const p = await service.update({ id: req.params.id, ...req.body });
-  if (p) res.send(p);
+  const person = await service.update({ id: req.params.id, ...req.body });
+  if (person) res.send(person);
   else res.status(404).send();
 });
